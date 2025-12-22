@@ -1,0 +1,88 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 1280px;
+}
+
+/* 商品卡片样式 */
+.product-card {
+    border: 1px solid #dee2e6;
+    border-radius: 15px; /* 精心打磨的圆角 */
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05); /* 精致的阴影 */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.product-card .card-img-top {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.product-card .card-body {
+    padding: 1rem;
+}
+
+.product-card .card-title {
+    font-size: 1rem;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product-card .card-price {
+    color: #dc3545;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.product-card .card-info {
+    font-size: 0.8rem;
+    color: #6c757d;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+}
+
+.product-card .gender-tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 0.25em 0.6em;
+    font-size: 0.75rem;
+    font-weight: bold;
+    border-radius: 50px;
+    color: #fff;
+}
+
+.gender-tag.male {
+    background-color: #007bff;
+}
+
+.gender-tag.female {
+    background-color: #e83e8c;
+}
+
+/* 底部导航 */
+.navbar.fixed-bottom {
+    border-top: 1px solid #ddd;
+}
+
+.navbar .nav-link {
+    font-size: 0.8rem;
+}
+
+.navbar .nav-link i {
+    font-size: 1.5rem;
+}
