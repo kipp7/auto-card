@@ -135,6 +135,9 @@ router.post('/', optionalAuth({ types: ['mobile'] }), asyncHandler(async (req, r
   let orderId;
   let product;
   let reservedCard;
+  let orderAmount;
+  let baseAmount;
+  let discountAmount;
   try {
     await connection.beginTransaction();
 
@@ -182,10 +185,10 @@ router.post('/', optionalAuth({ types: ['mobile'] }), asyncHandler(async (req, r
       return apiError(res, 409, '库存不足');
     }
 
-    const baseAmount = Number(product.salePrice ?? product.price);
+    baseAmount = Number(product.salePrice ?? product.price);
     const rule = await getFullReductionRule();
-    const discountAmount = calcFullReductionDiscount(baseAmount, rule);
-    const orderAmount = Math.max(0, baseAmount - discountAmount);
+    discountAmount = calcFullReductionDiscount(baseAmount, rule);
+    orderAmount = Math.max(0, baseAmount - discountAmount);
 
     const [insertRes] = await connection.query(
       `

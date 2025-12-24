@@ -166,6 +166,15 @@ async function main() {
       );
     }
 
+    const hasMaleRatio = await hasColumn(connection, { database, table: 'products', column: 'male_ratio' });
+    if (hasMaleRatio) {
+      await connection.query('ALTER TABLE `products` DROP COLUMN `male_ratio`;');
+    }
+    const hasFemaleRatio = await hasColumn(connection, { database, table: 'products', column: 'female_ratio' });
+    if (hasFemaleRatio) {
+      await connection.query('ALTER TABLE `products` DROP COLUMN `female_ratio`;');
+    }
+
     const hasSettingsTable = await hasTable(connection, { database, table: 'settings' });
     if (!hasSettingsTable) {
       await connection.query(
