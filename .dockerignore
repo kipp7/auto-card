@@ -1,0 +1,10 @@
+.git
+**/node_modules
+**/.vite
+**/dist
+**/*.log
+web_backup.rar
+tests
+docs
+openspec
+技术文档

@@ -6,8 +6,8 @@ services:
     container_name: auto-card-mysql
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: 123456
-      MYSQL_DATABASE: auto_card
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-123456}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-auto_card}
     ports:
       - "3306:3306"
     volumes:
@@ -16,10 +16,16 @@ services:
       - "--default-authentication-plugin=mysql_native_password"
       - "--character-set-server=utf8mb4"
       - "--collation-server=utf8mb4_unicode_ci"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-p${MYSQL_ROOT_PASSWORD:-123456}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
 
   server:
     build:
-      context: ./server
+      context: .
+      dockerfile: Dockerfile
     container_name: auto-card-server
     restart: unless-stopped
     depends_on:
@@ -28,8 +34,13 @@ services:
       - ./server/.env
     environment:
       DB_HOST: mysql
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: ${MYSQL_ROOT_PASSWORD:-123456}
+      DB_NAME: ${MYSQL_DATABASE:-auto_card}
     ports:
       - "3000:3000"
+    command: ["sh", "-c", "node scripts/wait-for-db.js && node scripts/init-db.js && node app.js"]
 
 volumes:
   mysql_data:

@@ -74,11 +74,13 @@
 - `npm.cmd run build`
 - 启动后端后访问：`http://localhost:3000/admin/`
 
-## Docker Compose（可选）
+## Docker Compose（推荐）
 
-- `cp server/.env.example server/.env`（按需修改数据库配置）
+- `cp server/.env.example server/.env`（按需修改配置）
 - `docker compose up -d --build`
-- `docker compose exec server npm run db:init`
+
+Docker 会自动等待 MySQL 就绪并执行 `db:init`，无需手动初始化。
+镜像包含 C 端静态页与管理端构建产物，如修改前端需重新 `docker compose up -d --build`。
 
 ## 数据库备份/恢复（可选）
 
@@ -99,6 +101,7 @@
 - 超时未支付会自动取消并释放库存；可在 `server/.env` 通过 `ORDER_EXPIRE_MINUTES` 调整
 - 支持促销价（可配置开始/结束时间）与满减规则，订单记录原价/优惠/实付金额
 - 库存导入提供重复/超长/已存在等校验与失败清单导出
+- 支付为演示流程，真实支付可通过 `.env` 中 `PAYMENT_*` 自行接入
 
 ## 文档入口
 
@@ -110,3 +113,5 @@
 - 数据库端口：`Test-NetConnection 127.0.0.1 -Port 3306`
 - 服务是否启动：`Get-Service MySQLAutoCard`（或在“服务”里查看）
 - 连接失败优先检查：`server/.env` 的 `DB_HOST/DB_PORT/DB_USER/DB_PASSWORD/DB_NAME`
+- **DB 是什么？** 数据库连接配置（MySQL/MariaDB）。容器启动会创建数据库，但表结构需要 `db:init` 创建。
+- **JWT 是什么？** 登录令牌的签名密钥，用于管理员/用户登录鉴权，必须自定义且保密。
