@@ -1,0 +1,44 @@
+name: Production Build
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+          cache-dependency-path: |
+            server/package-lock.json
+            admin/package-lock.json
+
+      - name: Install server deps
+        run: npm ci --prefix server
+
+      - name: Install admin deps
+        run: npm ci --prefix admin
+
+      - name: Build admin
+        run: npm run build --prefix admin
+
+      - name: Package artifact
+        run: |
+          mkdir -p artifacts
+          tar -czf artifacts/auto-card-${{ github.sha }}.tar.gz \
+            README.md docker-compose.yml \
+            server web admin/dist docs scripts "技术文档"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: auto-card-${{ github.sha }}
+          path: artifacts/auto-card-${{ github.sha }}.tar.gz
