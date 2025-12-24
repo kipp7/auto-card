@@ -82,13 +82,6 @@
       .toggleClass('text-bg-secondary', !product.isRealName)
       .text(product.isRealName ? '已实名' : '未实名');
 
-    var male = Number(product.maleRatio) || 0;
-    var female = Number(product.femaleRatio) || 0;
-    $('#maleRatioText').text(male + '%');
-    $('#femaleRatioText').text(female + '%');
-    $('#maleRatioBar').css('width', male + '%');
-    $('#femaleRatioBar').css('width', female + '%');
-
     $('#description').text(product.description || '-');
     $('#detailedIntro').html(product.detailedIntro || '<span class="text-muted">-</span>');
     $('#usageInstructions').html(product.usageInstructions || '<span class="text-muted">-</span>');

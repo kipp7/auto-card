@@ -36,15 +36,6 @@
     });
   }
 
-  function genderTag(maleRatio, femaleRatio) {
-    var male = Number(maleRatio) || 0;
-    var female = Number(femaleRatio) || 0;
-    if (male >= female) {
-      return '<span class="gender-tag male"><i class="bi bi-gender-male"></i> 男用户多</span>';
-    }
-    return '<span class="gender-tag female"><i class="bi bi-gender-female"></i> 女用户多</span>';
-  }
-
   function formatPrice(value) {
     var n = Number(value);
     if (Number.isNaN(n)) return String(value || '');
@@ -76,7 +67,6 @@
 
     productsToRender.forEach(function (product, index) {
       var image = product.mainImage || 'https://via.placeholder.com/600x600.png?text=Product';
-      var tag = genderTag(product.maleRatio, product.femaleRatio);
       var realNameBadge = product.isRealName
         ? '<span class="badge text-bg-success ms-2">已实名</span>'
         : '<span class="badge text-bg-secondary ms-2">未实名</span>';
@@ -103,8 +93,7 @@
           <a class="text-decoration-none" href="product-detail.html?id=${product.id}">
             <div class="card product-card h-100 ${soldOut ? 'is-sold-out' : ''}" style="animation-delay:${delay}ms">
               <img src="${image}" class="card-img-top" alt="${product.name}">
-              ${tag}
-              ${stockFlag}
+                ${stockFlag}
               <div class="card-body d-flex flex-column">
                 <h5 class="card-title">
                   ${product.name}
@@ -130,14 +119,35 @@
   }
 
   function loadAnnouncement() {
+    var container = $('#announcementList');
     http
-      .get('/api/c/announcements', { page: 1, pageSize: 1 })
+      .get('/api/c/announcements', { page: 1, pageSize: 5 })
       .then(function (data) {
-        var first = data.list && data.list.length ? data.list[0] : null;
-        $('.announcement-text').text(first ? first.title : '暂无公告');
+        var list = (data && data.list) || [];
+        container.empty();
+        if (!list.length) {
+          container.append(
+            '<div class="announcement-item"><span class="announcement-title">暂无公告</span><span class="announcement-time">-</span></div>',
+          );
+          return;
+        }
+        list.forEach(function (item, index) {
+          var title = item.title || '公告';
+          var time = item.createdAt ? item.createdAt.split(' ')[0] : index === 0 ? '置顶' : '-';
+          container.append(
+            '<div class="announcement-item"><span class="announcement-title">' +
+              title +
+              '</span><span class="announcement-time">' +
+              time +
+              '</span></div>',
+          );
+        });
       })
       .catch(function () {
-        $('.announcement-text').text('暂无公告');
+        container.empty();
+        container.append(
+          '<div class="announcement-item"><span class="announcement-title">暂无公告</span><span class="announcement-time">-</span></div>',
+        );
       });
   }
 

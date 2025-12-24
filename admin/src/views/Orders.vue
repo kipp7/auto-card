@@ -81,7 +81,7 @@
       </el-table-column>
       <el-table-column prop="status" label="状态" width="110" />
       <el-table-column prop="createdAt" label="创建时间" width="170" />
-      <el-table-column label="操作" width="320" fixed="right">
+      <el-table-column label="操作" width="320">
         <template #default="{ row }">
           <el-button size="small" @click="openDetail(row.orderId)">详情</el-button>
           <el-button size="small" type="primary" plain @click="deliver(row.orderId)">发放</el-button>
@@ -155,7 +155,7 @@
       <el-table-column prop="soldOrderId" label="售出交易" width="110" />
       <el-table-column prop="paidAt" label="支付时间" width="170" />
       <el-table-column prop="createdAt" label="下单时间" width="170" />
-      <el-table-column label="操作" width="120" fixed="right">
+      <el-table-column label="操作" width="120">
         <template #default="{ row }">
           <el-button
             size="small"

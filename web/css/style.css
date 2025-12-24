@@ -208,6 +208,41 @@ a {
     color: var(--secondary-text);
 }
 
+.announcement-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+}
+
+.announcement-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 4px 0;
+    border-bottom: 1px dashed rgba(15, 23, 42, 0.1);
+}
+
+.announcement-item:last-child {
+    border-bottom: none;
+}
+
+.announcement-title {
+    font-weight: 600;
+    color: var(--secondary-text);
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.announcement-time {
+    font-size: 0.75rem;
+    color: rgba(15, 23, 42, 0.45);
+    white-space: nowrap;
+}
+
 .category-scroll {
     display: flex;
     flex-wrap: nowrap;
@@ -331,26 +366,6 @@ a {
 .stock-flag.sold-out {
     background: rgba(148, 163, 184, 0.25);
     color: #475569;
-}
-
-.gender-tag {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    padding: 4px 10px;
-    border-radius: 999px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(14, 165, 233, 0.16);
-    color: #0f172a;
-}
-
-.gender-tag.female {
-    background: rgba(249, 115, 22, 0.18);
-    color: #7c2d12;
 }
 
 .product-card.is-sold-out {
@@ -561,53 +576,6 @@ a {
     display: flex;
     align-items: center;
     gap: 6px;
-}
-
-.ratio-card {
-    border: 1px solid var(--border-color);
-    padding: 1rem;
-    border-radius: var(--radius-md);
-    background: rgba(255, 255, 255, 0.7);
-}
-
-.ratio-title {
-    font-weight: 600;
-    margin-bottom: 0.6rem;
-}
-
-.ratio-bars {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.ratio-line {
-    display: grid;
-    grid-template-columns: 50px 1fr 60px;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.85rem;
-    color: var(--secondary-text);
-}
-
-.ratio-track {
-    height: 6px;
-    background: rgba(15, 23, 42, 0.08);
-    border-radius: 999px;
-    overflow: hidden;
-}
-
-.ratio-bar {
-    height: 100%;
-    border-radius: 999px;
-}
-
-.ratio-bar.male {
-    background: linear-gradient(135deg, #38bdf8, #0ea5e9);
-}
-
-.ratio-bar.female {
-    background: linear-gradient(135deg, #fb7185, #f97316);
 }
 
 .info-card {

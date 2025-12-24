@@ -51,7 +51,7 @@
         </template>
       </el-table-column>
       <el-table-column prop="createdAt" label="创建时间" width="170" />
-      <el-table-column label="操作" width="280" fixed="right">
+      <el-table-column label="操作" width="280">
         <template #default="{ row }">
           <el-button size="small" @click="openEdit(row.id)">编辑</el-button>
           <el-button size="small" type="info" plain @click="openStock(row)">库存</el-button>
@@ -116,13 +116,6 @@
         <el-form-item label="是否实名">
           <el-switch v-model="form.isRealName" />
         </el-form-item>
-        <el-form-item label="男粉比例(0-100)">
-          <el-input-number v-model="form.maleRatio" :min="0" :max="100" style="width: 100%" />
-        </el-form-item>
-        <el-form-item label="女粉比例(0-100)">
-          <el-input-number v-model="form.femaleRatio" :min="0" :max="100" style="width: 100%" />
-        </el-form-item>
-
         <el-form-item label="主图URL" class="span2">
           <el-input v-model="form.mainImage" />
         </el-form-item>
@@ -216,7 +209,7 @@
       <el-table-column prop="reservedAt" label="预占时间" width="170" />
       <el-table-column prop="soldAt" label="售出时间" width="170" />
       <el-table-column prop="createdAt" label="入库时间" width="170" />
-      <el-table-column label="操作" width="100" fixed="right">
+      <el-table-column label="操作" width="100">
         <template #default="{ row }">
           <el-button size="small" type="danger" plain :disabled="row.status !== 'available'" @click="removeStock(row)">
             删除
@@ -319,8 +312,6 @@ const form = reactive({
   followers: 0,
   likes: 0,
   isRealName: false,
-  maleRatio: 50,
-  femaleRatio: 50,
   mainImage: '',
   screenshot: '',
   description: '',
@@ -339,8 +330,6 @@ function resetForm() {
   form.followers = 0;
   form.likes = 0;
   form.isRealName = false;
-  form.maleRatio = 50;
-  form.femaleRatio = 50;
   form.mainImage = '';
   form.screenshot = '';
   form.description = '';
@@ -566,8 +555,6 @@ async function openEdit(id: number) {
     form.followers = data.followers;
     form.likes = data.likes;
     form.isRealName = data.isRealName;
-    form.maleRatio = data.maleRatio;
-    form.femaleRatio = data.femaleRatio;
     form.mainImage = data.mainImage || '';
     form.screenshot = data.screenshot || '';
     form.description = data.description || '';
@@ -631,8 +618,6 @@ async function save() {
       followers: form.followers,
       likes: form.likes,
       isRealName: form.isRealName,
-      maleRatio: form.maleRatio,
-      femaleRatio: form.femaleRatio,
       mainImage: form.mainImage || null,
       screenshot: form.screenshot || null,
       description: form.description || null,

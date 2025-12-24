@@ -18,7 +18,7 @@
       <el-table-column prop="status" label="状态" width="120" />
       <el-table-column prop="sort" label="排序" width="100" />
       <el-table-column prop="createdAt" label="创建时间" width="170" />
-      <el-table-column label="操作" width="200" fixed="right">
+      <el-table-column label="操作" width="200">
         <template #default="{ row }">
           <el-button size="small" @click="openEdit(row)">编辑</el-button>
           <el-button size="small" type="danger" @click="remove(row.id)">删除</el-button>
