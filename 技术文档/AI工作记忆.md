@@ -33,14 +33,13 @@
 
 ## 4. 当前项目状态 (Current Project Status)
 
-根据现有文档推断，项目已完成：
+当前仓库已落地一套可运行的 MVP：
 
-1.  **C端静态页面**：已完成基础布局和静态交互。
-2.  **B端静态页面**：已完成基础布局。
-3.  **后端API**：已完成C端和B端所有核心接口的开发。
-4.  **数据库**：已完成数据表结构设计和初始化脚本。
-5.  **自动化测试**：已搭建测试框架并编写了部分测试脚本。
-6.  **B端API对接**：已完成登录、新增商品等核心功能的对接。
+1.  **C端（`web/`）**：首页商品列表、商品详情、下单/支付演示、订单列表/详情、登录/注册、我的页面。
+2.  **B端（`admin/`）**：Vue 3 + TS + Element Plus 管理端（登录、仪表板、商品/订单/公告/用户/财务基础页面）。
+3.  **后端（`server/`）**：Express + MySQL 接口（`/api/c/*`、`/api/b/*`），含 JWT 鉴权与七牛上传 Token。
+4.  **文档（`docs/`）**：补齐 `数据表设计.md`、`c-api`、`b-api`。
+5.  **脚本与测试**：`server/scripts/init-db.js`（`npm run db:init`），`tests/api-smoke.js`（冒烟脚本）。
 
 ## 5. 主要待办任务 (Key TODOs)
 
@@ -56,10 +55,18 @@
 
 ## 6. 快速上手指令 (Quick Start Commands)
 
-- **启动后端服务**: `[待补充，例如: npm run dev:server]`
-- **启动B端前端**: `[待补充，例如: npm run dev:admin]`
-- **启动C端前端**: `[待补充，例如: 直接在浏览器打开HTML文件或使用Live Server]`
-- **运行API测试**: `npm test`
+- **启动后端服务**:
+  - `cd server`
+  - `npm.cmd run db:init`（首次初始化）
+  - `npm.cmd run dev`
+- **启动B端前端**:
+  - `cd admin`
+  - `npm.cmd install`
+  - `npm.cmd run dev`
+- **启动C端前端**:
+  - 直接打开 `web/index.html`（或使用 Live Server）
+- **运行冒烟测试**:
+  - `node tests/api-smoke.js`（需先启动后端并初始化数据库）
 - **测试服务器地址**: `http://localhost:3000`
 
-*（注意：上述启动指令为占位符，需根据 `package.json` 文件进行补充。）*
+*（Windows PowerShell 环境如遇到脚本执行策略限制，请使用 `npm.cmd`。）*

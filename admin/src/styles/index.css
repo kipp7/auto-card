@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+
+:root {
+  --brand: #0ea5e9;
+  --brand-2: #f97316;
+
+  --app-bg: #f7f3ee;
+  --app-card-bg: rgba(255, 255, 255, 0.9);
+  --app-card-solid: #ffffff;
+  --app-border: rgba(15, 23, 42, 0.08);
+  --app-text: #1f2937;
+  --app-muted: rgba(15, 23, 42, 0.55);
+  --app-shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
+  --app-shadow-sm: 0 14px 34px rgba(15, 23, 42, 0.08);
+  --app-radius: 18px;
+  --app-radius-lg: 26px;
+  --app-ring: 0 0 0 4px rgba(14, 165, 233, 0.2);
+
+  /* Element Plus theme variables */
+  --el-color-primary: var(--brand);
+  --el-border-radius-base: 12px;
+  --el-border-radius-round: 999px;
+  --el-font-family: "Space Grotesk", "Noto Sans SC", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+  --el-text-color-primary: var(--app-text);
+  --el-text-color-regular: rgba(15, 23, 42, 0.8);
+  --el-text-color-secondary: var(--app-muted);
+  --el-border-color: rgba(15, 23, 42, 0.12);
+  --el-border-color-light: rgba(15, 23, 42, 0.08);
+  --el-bg-color: rgba(255, 255, 255, 0.95);
+  --el-bg-color-page: transparent;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--app-text);
+  background: radial-gradient(900px 520px at 10% 10%, rgba(14, 165, 233, 0.14), transparent 60%),
+    radial-gradient(900px 520px at 90% 0%, rgba(249, 115, 22, 0.12), transparent 60%),
+    linear-gradient(180deg, #fefcf9 0%, var(--app-bg) 50%, #f4f5f7 100%);
+  background-attachment: fixed;
+  font-family: var(--el-font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.app-card {
+  background: var(--app-card-bg);
+  border: 1px solid var(--app-border);
+  border-radius: var(--app-radius-lg);
+  box-shadow: var(--app-shadow-sm);
+}
+
+@supports (backdrop-filter: blur(12px)) {
+  .app-card {
+    backdrop-filter: blur(12px);
+  }
+}
+
+.muted {
+  color: var(--app-muted);
+}
+
+/* Element Plus polish */
+.el-button:focus-visible,
+.el-input__wrapper.is-focus,
+.el-textarea__inner:focus {
+  box-shadow: var(--app-ring) !important;
+}
+
+.el-button--primary:not(.is-plain) {
+  border: 0;
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-2) 100%);
+  box-shadow: 0 14px 34px rgba(14, 165, 233, 0.18);
+}
+
+.el-button--primary:not(.is-plain):hover {
+  filter: brightness(0.98);
+}
+
+.el-button--primary.is-plain {
+  border-color: rgba(14, 165, 233, 0.28);
+}
+
+.el-table {
+  --el-table-border-color: rgba(15, 23, 42, 0.08);
+  --el-table-header-bg-color: rgba(255, 255, 255, 0.7);
+  --el-table-row-hover-bg-color: rgba(14, 165, 233, 0.06);
+  border-radius: var(--app-radius-lg);
+  overflow: hidden;
+  background: transparent;
+}
+
+.el-table__inner-wrapper {
+  border-radius: var(--app-radius-lg);
+}
+
+.el-table th.el-table__cell {
+  font-weight: 800;
+  color: rgba(15, 23, 42, 0.84);
+}
+
+.el-dialog {
+  border-radius: var(--app-radius-lg);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: var(--app-shadow);
+}
+
+@supports (backdrop-filter: blur(12px)) {
+  .el-dialog {
+    backdrop-filter: blur(12px);
+  }
+}
+
+.el-dialog__header {
+  padding: 16px 18px;
+}
+
+.el-dialog__body {
+  padding: 18px;
+}
+
+.el-dialog__footer {
+  padding: 12px 18px 18px;
+}
+
+.el-message-box {
+  border-radius: var(--app-radius-lg);
+}

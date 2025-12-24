@@ -96,3 +96,32 @@
     - 审查通过后，由项目负责人将PR合并到 `develop` 分支。
     - 合并后，删除该功能分支。
 
+## 5. 仓库初始化与远端配置 (Repository Initialization)
+
+> 适用于第一次将本地工程关联到远端仓库，或需要更新远端地址时使用。
+
+### 5.1 初始化并首次推送（新仓库）
+
+1) 初始化仓库并提交首个版本：
+   - `git init`
+   - `git add .`
+   - `git commit -m "chore: initial commit"`
+
+2) 绑定远端并推送：
+   - `git branch -M main`
+   - `git remote add origin https://github.com/kipp7/auto-card.git`
+   - `git push -u origin main`
+
+3) 可选：创建并推送 `develop` 分支：
+   - `git checkout -b develop`
+   - `git push -u origin develop`
+
+### 5.2 更新已有仓库的远端地址
+
+若本地已存在 `.git`，且需要切换远端地址：
+
+- `git remote set-url origin https://github.com/kipp7/auto-card.git`
+- `git remote -v`（确认新地址生效）
+
+> 说明：远端地址建议使用 HTTPS/SSH 的干净地址，避免携带个人 Token。 
+

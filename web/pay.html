@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>收银台</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-fade">
+
+    <div class="container mt-4 mb-5">
+        <header class="pay-header">
+            <div class="pay-title">收银台</div>
+            <div id="orderAmount" class="pay-amount">--</div>
+            <div class="pay-countdown">剩余支付时间 <span id="countdownText">15:00</span></div>
+        </header>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-12 col-lg-6">
+                <div class="card card-section pay-card">
+                    <div class="card-body">
+                        <div class="qr-box" id="qrcode"></div>
+                        <div id="payHint" class="pay-hint">请使用对应支付方式完成付款</div>
+                        <div class="d-grid gap-2 mt-4">
+                            <button id="paidBtn" class="btn btn-dark">我已完成支付</button>
+                            <button id="cancelBtn" class="btn btn-outline-dark">取消订单</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-5">
+                <div class="card card-section pay-card">
+                    <div class="card-body">
+                        <div class="pay-info-item">
+                            <span class="label">订单号</span>
+                            <span id="orderNo" class="value">-</span>
+                        </div>
+                        <div class="pay-info-item">
+                            <span class="label">卡密</span>
+                            <span id="productName" class="value">-</span>
+                        </div>
+                        <div id="originalAmountRow" class="pay-info-item d-none">
+                            <span class="label">原价</span>
+                            <span id="originalAmount" class="value">-</span>
+                        </div>
+                        <div id="discountAmountRow" class="pay-info-item d-none">
+                            <span class="label">优惠</span>
+                            <span id="discountAmount" class="value">-</span>
+                        </div>
+                        <div id="buyerPhoneText" class="pay-info-sub">-</div>
+
+                        <div class="pay-guide">
+                            <div class="pay-guide-title">支付步骤</div>
+                            <ol>
+                                <li>打开微信 / 支付宝扫码支付</li>
+                                <li>确认金额与订单一致</li>
+                                <li>点击「我已完成支付」</li>
+                            </ol>
+                        </div>
+
+                        <div class="pay-methods">
+                            <div class="pay-method"><i class="bi bi-wechat"></i> 微信支付</div>
+                            <div class="pay-method"><i class="bi bi-alipay"></i> 支付宝</div>
+                            <div class="pay-method"><i class="bi bi-qq"></i> QQ 钱包</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/http.js"></script>
+    <script src="js/pay.js"></script>
+</body>
+</html>

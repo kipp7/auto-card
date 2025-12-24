@@ -1,8 +1,12 @@
 # Dependencies
-/node_modules
+node_modules/
+**/node_modules/
 
 # Build artifacts
-/dist
+dist/
+**/dist/
+**/.vite/
+backups/
 
 # Logs
 logs
@@ -18,6 +22,7 @@ lerna-debug.log*
 .env.development.local
 .env.test.local
 .env.production.local
+!**/.env.example
 
 # IDEs and editors
 .idea

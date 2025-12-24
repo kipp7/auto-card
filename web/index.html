@@ -1,54 +1,115 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>24小时自动卡密下单系统</title>
+    <title>卡密交易平台 - 24H自动发货</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body data-page="home" class="page-fade">
 
-    <div class="container mt-4">
-        <header class="mb-4">
-            <h1>小红薯账号商城</h1>
-            <p class="lead">24小时自动发货，即买即用</p>
-        </header>
+    <header class="app-topbar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a class="app-brand" href="index.html">
+                <span class="app-logo"><i class="bi bi-controller"></i></span>
+                <span>
+                    <div class="app-brand-title">卡密交易平台</div>
+                    <div class="app-brand-subtitle">KEY EXCHANGE</div>
+                </span>
+            </a>
+            <div class="d-none d-lg-flex gap-3">
+                <a href="orders.html" class="btn btn-outline-dark btn-sm"><i class="bi bi-receipt me-1"></i>交易订单</a>
+                <a href="login.html" class="btn btn-dark btn-sm"><i class="bi bi-person-fill me-1"></i>登录 / 注册</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mb-5">
+        <section class="card card-section p-4 p-lg-5 mb-4 hero-panel">
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-7">
+                    <div class="hero-eyebrow">24H 自动发货 · 秒级交付</div>
+                    <h1 class="hero-title">更快、更稳的卡密交易体验</h1>
+                    <p class="hero-subtitle">全站库存实时同步，支持多种支付方式，支付成功即刻发货。</p>
+                    <div class="hero-actions">
+                        <a class="btn btn-dark" href="orders.html"><i class="bi bi-search me-2"></i>交易查询</a>
+                        <a class="btn btn-outline-dark" href="me.html">个人中心</a>
+                    </div>
+                    <div class="hero-highlights">
+                        <span><i class="bi bi-lightning-charge"></i> 秒级发货</span>
+                        <span><i class="bi bi-shield-check"></i> 平台保障</span>
+                        <span><i class="bi bi-headset"></i> 在线支持</span>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="search-panel">
+                        <div class="search-title">快速筛选</div>
+                        <div class="mb-2">
+                            <input type="text" id="keyword" class="form-control" placeholder="输入关键词查找卡密">
+                        </div>
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <select id="realName" class="form-select">
+                                    <option value="">实名状态</option>
+                                    <option value="true">已实名</option>
+                                    <option value="false">未实名</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <select id="sortBy" class="form-select">
+                                    <option value="createdAt">最新上架</option>
+                                    <option value="orderAmount">价格排序</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <select id="sortOrder" class="form-select">
+                                    <option value="desc">降序</option>
+                                    <option value="asc">升序</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <button id="searchBtn" class="btn btn-dark w-100">立即筛选</button>
+                            </div>
+                        </div>
+                        <div class="search-tip">建议按类目筛选后再排序，筛选更精准。</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="card card-section mb-4">
+            <div class="card-body py-3 d-flex align-items-center gap-3">
+                <div class="announcement-icon"><i class="bi bi-broadcast"></i></div>
+                <div id="announcement" class="announcement-text text-truncate">
+                    欢迎来到卡密交易平台！全站卡密 24 小时自动发货，支持多种支付方式。
+                </div>
+            </div>
+        </div>
+
+        <div id="categoryList" class="category-scroll scroll-hide mb-4"></div>
 
         <main>
-            <!-- 公告 -->
-            <div class="alert alert-info" role="alert">
-                <i class="bi bi-megaphone-fill"></i>
-                <strong>网站公告:</strong> 新店开张，全场8折优惠！
-            </div>
-
-            <!-- 商品列表 -->
-            <div id="product-list" class="row row-cols-2 row-cols-lg-5 g-4">
-                <!-- 商品卡片将通过JS动态加载 -->
-            </div>
+            <div id="product-list" class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3 g-lg-4"></div>
         </main>
     </div>
 
-    <!-- 移动端底部导航 -->
-    <nav class="d-lg-none navbar fixed-bottom bg-light">
-        <div class="container-fluid">
-            <div class="row w-100 text-center">
-                <div class="col">
-                    <a href="#" class="nav-link active"><i class="bi bi-house-door-fill"></i><br>首页</a>
-                </div>
-                <div class="col">
-                    <a href="#" class="nav-link"><i class="bi bi-receipt"></i><br>订单</a>
-                </div>
-                <div class="col">
-                    <a href="#" class="nav-link"><i class="bi bi-person-circle"></i><br>我的</a>
-                </div>
-            </div>
+    <nav class="d-lg-none navbar fixed-bottom">
+        <div class="container-fluid row mx-0 px-0">
+            <div class="col"><a href="index.html" data-page="home" class="bottom-nav-link active"><i class="bi bi-house-door-fill"></i>首页</a></div>
+            <div class="col"><a href="orders.html" data-page="orders" class="bottom-nav-link"><i class="bi bi-receipt"></i>交易</a></div>
+            <div class="col"><a href="me.html" data-page="me" class="bottom-nav-link"><i class="bi bi-person-circle"></i>我的</a></div>
         </div>
     </nav>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/http.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
