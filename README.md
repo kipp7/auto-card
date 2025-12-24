@@ -82,6 +82,17 @@
 Docker 会自动等待 MySQL 就绪并执行 `db:init`，无需手动初始化。
 镜像包含 C 端静态页与管理端构建产物，如修改前端需重新 `docker compose up -d --build`。
 
+## 用户自行配置（DB/JWT/支付）
+
+1) 数据库（DB_*）
+   - Docker：由 `MYSQL_DATABASE` 创建数据库；启动时自动执行 `db:init` 建表
+   - 非 Docker：执行 `npm.cmd --prefix server run db:init` 自动创建数据库与表（需具备权限）
+2) JWT（登录鉴权）
+   - `JWT_SECRET` 必须替换为强随机字符串（用于签发/校验登录 token）
+3) 支付（可选）
+   - 默认走演示支付流程
+   - 需要真实支付时，在 `server/.env` 填写 `PAYMENT_*` 并按你的支付服务商接入
+
 ## 数据库备份/恢复（可选）
 
 - 备份：
