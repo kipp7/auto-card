@@ -60,8 +60,6 @@
   "screenshot": "http://xxx/products/xxx.jpg",
   "detailedIntro": "<p>321321</p>",
   "usageInstructions": "<p>321321</p>",
-  "maleRatio": 50,
-  "femaleRatio": 50,
   "galleryImages": ["http://xxx/1.jpg", "http://xxx/2.jpg"]
 }
 ```

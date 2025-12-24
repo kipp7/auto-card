@@ -37,8 +37,6 @@
         "followers": 12000,
         "likes": 58000,
         "isRealName": true,
-        "maleRatio": 30,
-        "femaleRatio": 70,
         "mainImage": "https://...",
         "status": "online",
         "createdAt": "2025-12-22 12:00:00"
@@ -75,8 +73,6 @@
     "followers": 12000,
     "likes": 58000,
     "isRealName": true,
-    "maleRatio": 30,
-    "femaleRatio": 70,
     "description": "简介",
     "detailedIntro": "<p>富文本</p>",
     "usageInstructions": "<p>富文本</p>",

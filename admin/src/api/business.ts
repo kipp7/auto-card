@@ -37,8 +37,6 @@ export type Product = {
   followers: number;
   likes: number;
   isRealName: boolean;
-  maleRatio: number;
-  femaleRatio: number;
   mainImage: string | null;
   screenshot: string | null;
   stockAvailable?: number;
@@ -69,8 +67,6 @@ export type ProductPayload = {
   followers?: number;
   likes?: number;
   isRealName?: boolean;
-  maleRatio?: number;
-  femaleRatio?: number;
   cardNumber?: string | null;
   description?: string | null;
   detailedIntro?: string | null;

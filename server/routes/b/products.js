@@ -125,8 +125,6 @@ router.get('/', requireAuth({ types: ['admin'] }), asyncHandler(async (req, res)
         followers,
         likes,
         is_real_name AS isRealName,
-        male_ratio AS maleRatio,
-        female_ratio AS femaleRatio,
         main_image AS mainImage,
         screenshot,
         (SELECT COUNT(*) FROM product_cards pc WHERE pc.product_id = products.id AND pc.status = 'available') AS stockAvailable,
@@ -181,8 +179,6 @@ router.get('/:id', requireAuth({ types: ['admin'] }), asyncHandler(async (req, r
         followers,
         likes,
         is_real_name AS isRealName,
-        male_ratio AS maleRatio,
-        female_ratio AS femaleRatio,
         card_number AS cardNumber,
         description,
         detailed_intro AS detailedIntro,
@@ -402,8 +398,6 @@ router.post('/', requireAuth({ types: ['admin'] }), asyncHandler(async (req, res
         promo_start_at,
         promo_end_at,
         is_real_name,
-        male_ratio,
-        female_ratio,
         card_number,
         description,
         detailed_intro,
@@ -412,7 +406,7 @@ router.post('/', requireAuth({ types: ['admin'] }), asyncHandler(async (req, res
         screenshot,
         gallery_images,
         status
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `,
     [
       body.name,
@@ -425,8 +419,6 @@ router.post('/', requireAuth({ types: ['admin'] }), asyncHandler(async (req, res
       body.promoStartAt ?? null,
       body.promoEndAt ?? null,
       body.isRealName ? 1 : 0,
-      body.maleRatio ?? 50,
-      body.femaleRatio ?? 50,
       body.cardNumber ?? null,
       body.description ?? null,
       body.detailedIntro ?? null,
@@ -480,8 +472,6 @@ router.put('/:id', requireAuth({ types: ['admin'] }), asyncHandler(async (req, r
     ['screenshot', 'screenshot'],
     ['detailedIntro', 'detailed_intro'],
     ['usageInstructions', 'usage_instructions'],
-    ['maleRatio', 'male_ratio'],
-    ['femaleRatio', 'female_ratio'],
     ['cardNumber', 'card_number'],
     ['status', 'status'],
   ];

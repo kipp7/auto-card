@@ -83,8 +83,6 @@ async function main() {
       followers: 0,
       likes: 0,
       isRealName: false,
-      maleRatio: 50,
-      femaleRatio: 50,
     }),
   });
   assert(product && product.id, 'create product failed');

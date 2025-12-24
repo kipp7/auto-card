@@ -1,4 +1,4 @@
-技术要点
+﻿技术要点
 - 实现后台管理系统对接后端API接口
 - 实现后台管理系统登录功能
 - 实现后台管理系统新增商品功能
@@ -123,7 +123,7 @@
 
 
 
-/api/b/products {"name":"32222","category":"xiaohongshuo","price":33,"originalPrice":333,"followers":3231,"likes":321,"isRealName":true,"cardNumber":"1----2----33","status":"online","description":"321321","mainImage":"http://t5wpwj0gr.hn-bkt.clouddn.com/products/1763458960932_flz0n9.jpg","screenshot":"http://t5wpwj0gr.hn-bkt.clouddn.com/products/1763458968008_4ttkyq.jpg","detailedIntro":"321321","usageInstructions":"<p>321312111</p>","maleRatio":50,"femaleRatio":50} {"code":500,"message":"创建商品失败","data":null} 2025-11-18 17:42:53 error: SQL执行错误: Bind parameters must not contain undefined. To pass 
+/api/b/products {"name":"32222","category":"xiaohongshuo","price":33,"originalPrice":333,"followers":3231,"likes":321,"isRealName":true,"cardNumber":"1----2----33","status":"online","description":"321321","mainImage":"http://t5wpwj0gr.hn-bkt.clouddn.com/products/1763458960932_flz0n9.jpg","screenshot":"http://t5wpwj0gr.hn-bkt.clouddn.com/products/1763458968008_4ttkyq.jpg","detailedIntro":"321321","usageInstructions":"<p>321312111</p>"} {"code":500,"message":"创建商品失败","data":null} 2025-11-18 17:42:53 error: SQL执行错误: Bind parameters must not contain undefined. To pass 
 SQL NULL specify JS null
 Error: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
     at PromisePool.execute (G:\daima\code\教程\xiaohongshuzhanghao\server\node_modules\mysql2\lib\promise\pool.js:54:22)

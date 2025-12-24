@@ -27,8 +27,6 @@ CREATE TABLE IF NOT EXISTS `products` (
   `followers` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '粉丝数',
   `likes` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '赞藏数',
   `is_real_name` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否实名：0否/1是',
-  `male_ratio` int(11) unsigned NOT NULL DEFAULT '50' COMMENT '男粉比例(0-100)',
-  `female_ratio` int(11) unsigned NOT NULL DEFAULT '50' COMMENT '女粉比例(0-100)',
   `card_number` mediumtext DEFAULT NULL COMMENT '账号卡密',
   `description` text DEFAULT NULL COMMENT '商品简介',
   `detailed_intro` mediumtext DEFAULT NULL COMMENT '详细介绍(富文本)',
